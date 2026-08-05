@@ -1,0 +1,35 @@
+{
+  "name": "pi-sanitizer",
+  "version": "0.1.0",
+  "description": "A pi extension that strips hidden-content prompt injections from what an agent reads and writes: invisible Unicode, ANSI escapes, human-invisible HTML — with edits re-anchored onto the real bytes on disk.",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-extension",
+    "prompt-injection",
+    "sanitize",
+    "unicode",
+    "security"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "pi": {
+    "extensions": ["./src/index.ts"]
+  },
+  "dependencies": {
+    "agent-sanitizer": "^2.14.10"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^0.82.1",
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.3",
+    "vitest": "^3.2.4"
+  }
+}
