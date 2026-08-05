@@ -1,7 +1,7 @@
 /** Ingress: sanitize tool output before the model reads it.
  *
- *  This is the channel the AISI comment-injection lives in — text an operator
- *  never sees (an HTML comment, a zero-width run, an ANSI-hidden line) that
+ *  This is where the payload usually arrives: text an operator never sees (an
+ *  HTML comment, a zero-width run, a line the terminal paints invisible) that
  *  the model reads as if it were instructions. Every layer here is a
  *  deterministic byte-level transform, not a classifier: we are not trying to
  *  decide whether text is *malicious*, only to make sure the model and the
