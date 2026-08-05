@@ -19,7 +19,17 @@ describe("classifyInput", () => {
     expect(decision.text).not.toContain("\u200b");
     expect(decision.text).toContain("please review this PR");
     expect(decision.text).toContain("[pi-sanitizer]");
-    expect(decision.reason).toBeTruthy();
+    expect(decision.reason).toBe("40 characters removed (Format chars (Cf))");
+  });
+
+  it("tells the model to get on with the visible request", () => {
+    // A model that reads the preamble as "this task is suspicious" refuses
+    // ordinary work over a stray zero-width character, and then the operator
+    // switches the whole extension off.
+    const decision = classifyInput(DEFAULT_POLICY, payload);
+    if (decision.action !== "transform") throw new Error("expected a transform");
+    expect(decision.text).toContain("carry out that request as usual");
+    expect(decision.text).not.toMatch(/suspicion|suspicious/i);
   });
 
   it("drops the prompt entirely in block mode", () => {
